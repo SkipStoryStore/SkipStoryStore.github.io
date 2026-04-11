@@ -578,6 +578,46 @@ img {
 .card-price {
   font-size: 1.3rem;
 }
+.acc-box {
+  background: linear-gradient(160deg, #0a0a0a, #121212);
+  border: 1px solid #1f1f1f;
+  padding: 18px;
+  margin: 12px;
+  border-radius: 16px;
+  color: #eaeaea;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.acc-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.05), transparent);
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.acc-box:hover::before {
+  opacity: 1;
+}
+
+.acc-box:hover {
+  transform: translateY(-4px);
+  border-color: #444;
+}
+
+.currency {
+  margin: 10px 0;
+  opacity: 0.75;
+  font-size: 14px;
+}
+
+.status {
+  font-size: 12px;
+  opacity: 0.6;
+}
 
 #about {
   text-align: center;

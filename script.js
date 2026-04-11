@@ -134,3 +134,55 @@ setTimeout(() => {
     }, i * 100);
   });
 }, 100);
+async function loadData() {
+  const res = await fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vR9wCzduAuhztWNNSoICvnKDW-cAwv2HaMwpdQqUGkOWcnbEWLWstz6-N-8pS5clwhlDXQml8k_WR9O/pub?output=csv&t=" + new Date().getTime());
+  const text = await res.text();
+
+  const rows = text.split("\n").slice(1);
+  const list = document.getElementById("list");
+  list.innerHTML = "";
+
+  rows.forEach(row => {
+    const cols = row.split(",");
+
+    const data = {
+      title: cols[0],
+      game: cols[1],
+      level: cols[2],
+      poly: cols[3],
+      encrypt: cols[4],
+      master: cols[5],
+      boopon: cols[6],
+      daily: cols[7],
+      weekly: cols[8],
+      event: cols[9],
+      story: cols[10],
+      link: cols[12]
+    };
+
+    const check = (val) => val === "TRUE" ? "✔" : "✖";
+
+    const sheet = `
+      <div class="acc-box">
+        <h2>${data.title}</h2>
+        <p>${data.game} • Lv ${data.level}</p>
+
+        <div class="currency">
+          💎 ${data.poly} | 🎟 ${data.encrypt} | 🎫 ${data.master} | 🐾 ${data.boopon}
+        </div>
+
+        <div class="status">
+          Daily: ${check(data.daily)} |
+          Weekly: ${check(data.weekly)} |
+          Event: ${check(data.event)} |
+          Story: ${check(data.story)}
+        </div>
+      </div>
+    `;
+
+    list.innerHTML += sheet;
+  });
+}
+
+loadData();
+setInterval(loadData, 30000);
