@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="img/logo final.webp" />
+    <title>Skip Story Store</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <div id="loading"></div>
+  <body
+    style="
+      font-family: dongle;
+      color: white;
+      background-color: rgb(255, 255, 255);
+    "
+  >
+    <nav class="nav-bar">
+      <div class="bar">
+        <a onclick="showPage('accounts')" class="nav-text">Accounts</a>
+        <a onclick="showPage('boosting')" class="nav-text">Boosting</a>
+      </div>
+      <div class="bar1">
+        <a onclick="showPage('about')" class="nav-text">About</a>
+      </div>
+    </nav>
+    <div id>
+      <div id="overlay" class="overlay" onclick="closeOverlay()">
+        <div class="overlay-content" onclick="event.stopPropagation()">
+          <div class="overlay-flex">
+            <div class="image-slider">
+              <button class="arrow left" onclick="prevImage()">‹</button>
+              <img id="overlay-img" src="" />
+              <button class="arrow right" onclick="nextImage()">›</button>
+            </div>
+            <div class="overlay-text">
+              <h2 id="overlay-title"></h2>
+              <p id="overlay-price"></p>
+              <p id="overlay-desc"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="accounts" class="page">
+        <div class="main" style="display: grid; gap: 10px">
+          <div class="group">
+            <div class="text-kategori">Accounts Zenlees Zone Zero</div>
+            <div style="padding: 10px" id="zzz-container"></div>
+          </div>
+          <div class="group">
+            <div class="text-kategori">Accounts Honkai Star Rail</div>
+            <div style="padding: 10px" id="hsr-container"></div>
+          </div>
+        </div>
+      </div>
+      <div id="boosting" class="page" style="display: none">
+        <p style="font-size: 2em">Boosting service coming soon.</p>
+      </div>
+      <div id="about" class="page" style="display: none">
+        <h1>About Page</h1>
+        <p>This is the about page content.</p>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
