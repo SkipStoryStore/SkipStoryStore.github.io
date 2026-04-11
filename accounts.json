@@ -22,7 +22,7 @@
         "img/Acc2/4.webp"
       ]
     },
-        {
+    {
       "title": "Akun ZZZ ke 3.1",
       "price": "300k",
       "description": "ini deksripsi akun zzz ke 3.1, char lengkap, ready endgame",
@@ -33,7 +33,7 @@
         "img/Acc3/4.webp"
       ]
     },
-        {
+    {
       "title": "Akun ZZZ ke 4.5",
       "price": "300k",
       "description": "ini deskripsi akun zzz ke 4.5, char lengkap, weapon SSR, story sudah selesai, ready endgame",
@@ -42,6 +42,17 @@
         "img/Acc4/2.webp",
         "img/Acc4/3.webp",
         "img/Acc4/4.webp"
+      ]
+    },
+    {
+      "title": "HSR",
+      "price": "400k",
+      "description": "ini deskripsi akun HSR 1",
+      "images": [
+        "img/Acc5/1.webp",
+        "img/Acc5/2.webp",
+        "img/Acc5/3.webp",
+        "img/Acc5/4.webp"
       ]
     }
   ],

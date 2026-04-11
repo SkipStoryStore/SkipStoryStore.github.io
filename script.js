@@ -12,6 +12,11 @@ function showPage(page) {
 }
 showPage("accounts");
 
+let currentItem = null;
+let images = [];
+let currentIndex = 0;
+let interval;
+
 fetch("accounts.json")
   .then((res) => res.json())
   .then((data) => {
@@ -19,7 +24,7 @@ fetch("accounts.json")
       const img =
         item.images && item.images.length > 0
           ? item.images[0]
-          : "img/logo final.webp"; // fallback
+          : "img/logo final.webp";
 
       return `
     <div class="card" onclick='openOverlay(${JSON.stringify(item)})'>
@@ -46,38 +51,29 @@ fetch("accounts.json")
       hsrContainer.innerHTML += createCard(item);
     });
   });
-function openOverlay(item) {
-  document.getElementById("overlay").style.display = "flex";
-  document.getElementById("overlay-img").src = item.image;
-  document.getElementById("overlay-title").innerText = item.title;
-  document.getElementById("overlay-price").innerText = item.price;
-}
-function closeOverlay() {
-  document.getElementById("overlay").style.display = "none";
-}
-
-let images = [];
-let currentIndex = 0;
-let interval;
 
 // buka overlay
 function openOverlay(item) {
   document.getElementById("overlay").style.display = "flex";
-
-  images = item.images; // array gambar
+  currentItem = item;
+  images = Array.isArray(item.images) && item.images.length > 0
+    ? item.images
+    : ["img/logo final.webp"];
   currentIndex = 0;
-
   updateImage();
-
-  // auto slide
   clearInterval(interval);
   interval = setInterval(nextImage, 4000);
-
   document.getElementById("overlay-title").innerText = item.title;
   document.getElementById("overlay-price").innerText = "Price : \n" + item.price;
   document.getElementById("overlay-desc").innerText = item.description;
 }
+function orderWA() {
+  if (!currentItem) return;
 
+  const text = `Halo, saya mau beli:\n${currentItem.title}`;
+  const url = `https://wa.me/62XXXXXXXXXX?text=${encodeURIComponent(text)}`;
+  window.open(url, "_blank");
+}
 // update gambar
 function updateImage() {
   document.getElementById("overlay-img").src = images[currentIndex];
@@ -85,20 +81,30 @@ function updateImage() {
 
 // next
 function nextImage() {
+  if (images.length <= 1) return;
   currentIndex = (currentIndex + 1) % images.length;
   updateImage();
 }
 
 // prev
 function prevImage() {
+  if (images.length <= 1) return;
   currentIndex = (currentIndex - 1 + images.length) % images.length;
   updateImage();
 }
 
 // klik kiri kanan
-const slider = document.querySelector(".image-slider");
+document.addEventListener("click", function (e) {
+  if (e.target.closest(".wa-btn")) return;
 
-slider.addEventListener("click", function (e) {
+  const slider = e.target.closest(".image-slider");
+  if (!slider) return;
+
+  if (e.target.closest(".arrow")) {
+    e.stopPropagation();
+    return;
+  }
+
   const rect = slider.getBoundingClientRect();
   const x = e.clientX - rect.left;
 
@@ -114,6 +120,13 @@ function closeOverlay() {
   document.getElementById("overlay").style.display = "none";
   clearInterval(interval);
 }
+
+document.querySelectorAll(".arrow").forEach((arrow) => {
+  arrow.addEventListener("click", (e) => {
+    e.stopPropagation();
+  });
+});
+
 setTimeout(() => {
   document.querySelectorAll(".card").forEach((el, i) => {
     setTimeout(() => {
