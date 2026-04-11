@@ -6,6 +6,9 @@
     <link rel="icon" type="image/png" href="img/logo final.webp" />
     <title>Skip Story Store</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Monsieur+La+Doulaise&display=swap" rel="stylesheet">
   </head>
   <div id="loading"></div>
   <body
@@ -27,6 +30,7 @@
     <div id>
       <div id="overlay" class="overlay" onclick="closeOverlay()">
         <div class="overlay-content" onclick="event.stopPropagation()">
+          <div class="click">Click anywhere to close</div>
           <div class="overlay-flex">
             <div class="image-slider">
               <button class="arrow left" onclick="prevImage()">‹</button>
@@ -45,21 +49,27 @@
       <div id="accounts" class="page">
         <div class="main" style="display: grid; gap: 10px">
           <div class="group">
-            <div class="text-kategori">Accounts Zenlees Zone Zero</div>
+            <div class="text-kategori">Zenlees Zone Zero</div>
             <div style="padding: 10px" id="zzz-container"></div>
           </div>
           <div class="group">
-            <div class="text-kategori">Accounts Honkai Star Rail</div>
+            <div class="text-kategori">Honkai Star Rail</div>
             <div style="padding: 10px" id="hsr-container"></div>
           </div>
         </div>
       </div>
       <div id="boosting" class="page" style="display: none">
-        <p style="font-size: 2em">Boosting service coming soon.</p>
+        <p style="font-size: 2rem">Boosting service coming soon.</p>
       </div>
-      <div id="about" class="page" style="display: none">
-        <h1>About Page</h1>
-        <p>This is the about page content.</p>
+      <div id="about" class="page">
+        <h2 style="font-family: fredoka;">About Us</h2>
+        <p style="font-family: fredoka; font-size: 0.8rem; margin-top: 10px;">
+          We are a game account provider focused on Zenless Zone Zero and Honkai: Star Rail.<br>
+          All accounts are created and played from the beginning with 100% manual play, without the use of cheats, bots, macros, or any third-party programs.<br>
+          Each account is a first owner account, with no history of access from multiple users, and all progress is obtained naturally through gameplay.<br>
+          We guarantee no hack back or account reclaim after the transaction is completed.
+        </p>
+        <p style="font-family: Monsieur La Doulaise; position: absolute; bottom: -35px; left: 5%; font-size: 1.2rem; color: rgba(255, 255, 255, 0.3); text-shadow: 0 0 5px #ffc40088;">Your trust is our greatest honor.</p>
       </div>
     </div>
     <script src="script.js"></script>

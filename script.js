@@ -70,8 +70,8 @@ function openOverlay(item) {
 function orderWA() {
   if (!currentItem) return;
 
-  const text = `Halo, saya mau beli:\n${currentItem.title}`;
-  const url = `https://wa.me/62XXXXXXXXXX?text=${encodeURIComponent(text)}`;
+  const text = `Hello, I’m interested in the ${currentItem.title} account. Is it still available?`;
+  const url = `https://wa.me/6285117045962?text=${encodeURIComponent(text)}`;
   window.open(url, "_blank");
 }
 // update gambar

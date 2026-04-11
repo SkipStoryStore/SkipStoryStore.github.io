@@ -3,7 +3,7 @@
     {
       "title": "SKIN-1",
       "price": "IDR 500k",
-      "description": "Server : Asia\nMc : Female\n\nChar :\nLucia, Vivian\nKoleda, Grace, Zhao, Lycaon\n\nW-Engine :\nFlight of Fancy (Vivian)\nDreamlit Hearth (Lucia)\nSteel Cushion (Nekomata)\nHellfire Gears (Koleda)\n\nSkin / Costume :\nVivian, Jane Doe, Pan Yinhu, Manato",
+      "description": "Server : Asia\nMC : Female\n\nChar :\nLucia, Vivian\nKoleda, Grace, Zhao, Lycaon\n\nW-Engine :\nFlight of Fancy (Vivian)\nDreamlit Hearth (Lucia)\nSteel Cushion (Nekomata)\nHellfire Gears (Koleda)\n\nCostume :\nVivian, Jane Doe, Pan Yinhu, Manato",
       "images": [
         "img/Acc1/acc1.png",
         "img/Acc1/1.webp",
@@ -14,7 +14,7 @@
     {
       "title": "YSM4-1",
       "price": "IDR 969k",
-      "description": "akun zzz ke 2.2 endgame",
+      "description": "Server: Asia\nMC: Male\n\nChar:\nYe Shunguang M4, Sunna, Dialyn\nZhao, Soldier 11, Grace, Koleda, Lycaon, Nekomata\n\nW-Engine:\nCloudcleave Radiance (Ye Shunguang)\nThe Brimstone (Soldier 11)\nThe Restrained (Lycaon)\nWeeping Cradle (Rina)\n\nCostume:\nPan Yinhu, Jane Doe, Manato",
       "images": [
         "img/Acc2/1.webp",
         "img/Acc2/2.webp",
@@ -23,9 +23,9 @@
       ]
     },
     {
-      "title": "Akun ZZZ ke 3.1",
-      "price": "300k",
-      "description": "ini deksripsi akun zzz ke 3.1, char lengkap, ready endgame",
+      "title": "YSM4-2",
+      "price": "IDR 700k",
+      "description": "Server: Asia\nMC: Male\n\nChar:\nYe Shunguang M4\nZhao, Soldier11 M1, Rina, Nekomata, Lycaon, Koleda\n\nW-Engine:\nCloudcleave Radiance (Ye Shunguang)\nThe Restrained (Lycaon)\n\nCostume:\nPan Yinhu, Jane Doe, Manato",
       "images": [
         "img/Acc3/1.webp",
         "img/Acc3/2.webp",
@@ -34,9 +34,9 @@
       ]
     },
     {
-      "title": "Akun ZZZ ke 4.5",
-      "price": "300k",
-      "description": "ini deskripsi akun zzz ke 4.5, char lengkap, weapon SSR, story sudah selesai, ready endgame",
+      "title": "YSM2-1",
+      "price": "IDR 1M",
+      "description": "Server: Asia\nMC: Male\n\nChar :\nYe Shunguang M2, Dialyn M3, Sunna\nZhao, Soldier11, Rina M1, Nekomata, Koleda\n\nW-Engine :\nCloudcleave Radiance (Ye Shunguang)\nYesterday Calls (Dialyn)\n\nCostume :\nManato, Jane Doe, Pan Yinhu, Vivian",
       "images": [
         "img/Acc4/1.webp",
         "img/Acc4/2.webp",
@@ -45,9 +45,9 @@
       ]
     },
     {
-      "title": "HSR",
-      "price": "400k",
-      "description": "ini deskripsi akun HSR 1",
+      "title": "YSM6-1",
+      "price": "IDR 1.45M",
+      "description": "Server: Asia\nMC: Female\n\nChar :\nYe Shunguang M6, Sunna\nZhao, Soldier11, Grace, Lycaon\n\nW-Engine :\nCloudcleave Radiance (Ye Shunguang)\nFusion Compiler (Grace)\nWeeping Cradle (Rina)\n\nCostume :\nManato, Jane Doe, Pan Yinhu",
       "images": [
         "img/Acc5/1.webp",
         "img/Acc5/2.webp",
@@ -59,8 +59,8 @@
   "hsr": [
     {
       "title": "HSR",
-      "price": "400k",
-      "description": "ini deskripsi akun HSR 1",
+      "price": "IDR 999M",
+      "description": "Desc HSR",
       "images": [
         "img/Acc5/1.webp",
         "img/Acc5/2.webp",
