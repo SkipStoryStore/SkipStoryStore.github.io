@@ -1,5 +1,10 @@
 window.addEventListener("load", () => {
   const loading = document.getElementById("loading");
+
+  if (!loading) {
+    return;
+  }
+
   loading.classList.add("hide");
   setTimeout(() => {
     loading.remove();
@@ -7,9 +12,16 @@ window.addEventListener("load", () => {
 });
 
 function showPage(page) {
-  document.querySelectorAll(".page").forEach((p) => (p.style.display = "none"));
-  document.getElementById(page).style.display = "block";
+  document.querySelectorAll(".page").forEach((section) => {
+    section.style.display = "none";
+  });
+
+  const activePage = document.getElementById(page);
+  if (activePage) {
+    activePage.style.display = "block";
+  }
 }
+
 showPage("accounts");
 
 let currentItem = null;
@@ -17,96 +29,139 @@ let images = [];
 let currentIndex = 0;
 let interval;
 
-fetch("accounts.json")
-  .then((res) => res.json())
-  .then((data) => {
-    function createCard(item) {
-      const img =
-        item.images && item.images.length > 0
-          ? item.images[0]
-          : "img/logo final.webp";
+function animateCards() {
+  document.querySelectorAll(".card").forEach((card, index) => {
+    setTimeout(() => {
+      card.classList.add("show");
+    }, index * 100);
+  });
+}
 
-      return `
-    <div class="card" onclick='openOverlay(${JSON.stringify(item)})'>
-      <div class="image-acc">
-        <img src="${img}">
-      </div>
-      <div class="info-acc">
-        <div class="card-title">${item.title}</div>
-        <div class="card-price">${item.price}</div>
-      </div>
+function createCard(item) {
+  const imageSource =
+    Array.isArray(item.images) && item.images.length > 0
+      ? item.images[0]
+      : "img/logo final.webp";
+
+  const card = document.createElement("div");
+  card.className = "card";
+  card.addEventListener("click", () => openOverlay(item));
+  card.innerHTML = `
+    <div class="image-acc">
+      <img src="${imageSource}" alt="${item.title}" />
+    </div>
+    <div class="info-acc">
+      <div class="card-title">${item.title}</div>
+      <div class="card-price">${item.price}</div>
     </div>
   `;
+
+  return card;
+}
+
+async function loadAccounts() {
+  try {
+    const response = await fetch("accounts.json");
+    if (!response.ok) {
+      throw new Error(`Failed to load accounts: ${response.status}`);
     }
 
-    // ZZZ
+    const data = await response.json();
     const zzzContainer = document.getElementById("zzz-container");
-    data.zzz.forEach((item) => {
-      zzzContainer.innerHTML += createCard(item);
-    });
-
-    // HSR
     const hsrContainer = document.getElementById("hsr-container");
-    data.hsr.forEach((item) => {
-      hsrContainer.innerHTML += createCard(item);
-    });
-  });
 
-// buka overlay
+    zzzContainer.innerHTML = "";
+    hsrContainer.innerHTML = "";
+
+    (data.zzz || []).forEach((item) => {
+      zzzContainer.appendChild(createCard(item));
+    });
+
+    (data.hsr || []).forEach((item) => {
+      hsrContainer.appendChild(createCard(item));
+    });
+
+    animateCards();
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 function openOverlay(item) {
-  document.getElementById("overlay").style.display = "flex";
+  const overlay = document.getElementById("overlay");
+  if (!overlay) {
+    return;
+  }
+
+  overlay.classList.add("show");
   currentItem = item;
-  images = Array.isArray(item.images) && item.images.length > 0
-    ? item.images
-    : ["img/logo final.webp"];
+  images =
+    Array.isArray(item.images) && item.images.length > 0
+      ? item.images
+      : ["img/logo final.webp"];
   currentIndex = 0;
   updateImage();
+
   clearInterval(interval);
   interval = setInterval(nextImage, 4000);
+
   document.getElementById("overlay-title").innerText = item.title;
-  document.getElementById("overlay-price").innerText = "Price : \n" + item.price;
+  document.getElementById("overlay-price").innerText = `Price:\n${item.price}`;
   document.getElementById("overlay-desc").innerText = item.description;
 }
-function orderWA() {
-  if (!currentItem) return;
 
-  const text = `Hello, I’m interested in the ${currentItem.title} account. Is it still available?`;
+function orderWA() {
+  if (!currentItem) {
+    return;
+  }
+
+  const text = `Hello, I'm interested in the ${currentItem.title} account. Is it still available?`;
   const url = `https://wa.me/6285117045962?text=${encodeURIComponent(text)}`;
   window.open(url, "_blank");
 }
-// update gambar
+
 function updateImage() {
-  document.getElementById("overlay-img").src = images[currentIndex];
+  const image = document.getElementById("overlay-img");
+  if (image) {
+    image.src = images[currentIndex];
+  }
 }
 
-// next
 function nextImage() {
-  if (images.length <= 1) return;
+  if (images.length <= 1) {
+    return;
+  }
+
   currentIndex = (currentIndex + 1) % images.length;
   updateImage();
 }
 
-// prev
 function prevImage() {
-  if (images.length <= 1) return;
+  if (images.length <= 1) {
+    return;
+  }
+
   currentIndex = (currentIndex - 1 + images.length) % images.length;
   updateImage();
 }
 
-// klik kiri kanan
-document.addEventListener("click", function (e) {
-  if (e.target.closest(".wa-btn")) return;
+document.addEventListener("click", (event) => {
+  if (event.target.closest(".wa-btn")) {
+    return;
+  }
 
-  const slider = e.target.closest(".image-slider");
-  if (!slider) return;
+  const slider = event.target.closest(".image-slider");
+  if (!slider) {
+    return;
+  }
 
-  if (e.target.closest(".arrow")) {
-    e.stopPropagation();
+  if (event.target.closest(".arrow")) {
+    event.stopPropagation();
     return;
   }
 
   const rect = slider.getBoundingClientRect();
-  const x = e.clientX - rect.left;
+  const x = event.clientX - rect.left;
 
   if (x < rect.width / 2) {
     prevImage();
@@ -115,74 +170,125 @@ document.addEventListener("click", function (e) {
   }
 });
 
-// close overlay
 function closeOverlay() {
-  document.getElementById("overlay").style.display = "none";
+  const overlay = document.getElementById("overlay");
+  if (overlay) {
+    overlay.classList.remove("show");
+  }
   clearInterval(interval);
 }
 
 document.querySelectorAll(".arrow").forEach((arrow) => {
-  arrow.addEventListener("click", (e) => {
-    e.stopPropagation();
+  arrow.addEventListener("click", (event) => {
+    event.stopPropagation();
   });
 });
 
-setTimeout(() => {
-  document.querySelectorAll(".card").forEach((el, i) => {
-    setTimeout(() => {
-      el.classList.add("show");
-    }, i * 100);
-  });
-}, 100);
-async function loadData() {
-  const res = await fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vR9wCzduAuhztWNNSoICvnKDW-cAwv2HaMwpdQqUGkOWcnbEWLWstz6-N-8pS5clwhlDXQml8k_WR9O/pub?output=csv&t=" + new Date().getTime());
-  const text = await res.text();
+function parseCsvRow(row) {
+  const values = [];
+  let current = "";
+  let insideQuotes = false;
 
-  const rows = text.split("\n").slice(1);
-  const list = document.getElementById("list");
-  list.innerHTML = "";
+  for (let index = 0; index < row.length; index += 1) {
+    const char = row[index];
+    const nextChar = row[index + 1];
 
-  rows.forEach(row => {
-    const cols = row.split(",");
+    if (char === '"') {
+      if (insideQuotes && nextChar === '"') {
+        current += '"';
+        index += 1;
+      } else {
+        insideQuotes = !insideQuotes;
+      }
+      continue;
+    }
 
-    const data = {
-      title: cols[0],
-      game: cols[1],
-      level: cols[2],
-      poly: cols[3],
-      encrypt: cols[4],
-      master: cols[5],
-      boopon: cols[6],
-      daily: cols[7],
-      weekly: cols[8],
-      event: cols[9],
-      story: cols[10],
-      link: cols[12]
-    };
+    if (char === "," && !insideQuotes) {
+      values.push(current.trim());
+      current = "";
+      continue;
+    }
 
-    const check = (val) => val === "TRUE" ? "✔" : "✖";
+    current += char;
+  }
 
-    const sheet = `
-      <div class="acc-box">
-        <h2>${data.title}</h2>
-        <p>${data.game} • Lv ${data.level}</p>
-
-        <div class="currency">
-          💎 ${data.poly} | 🎟 ${data.encrypt} | 🎫 ${data.master} | 🐾 ${data.boopon}
-        </div>
-
-        <div class="status">
-          Daily: ${check(data.daily)} |
-          Weekly: ${check(data.weekly)} |
-          Event: ${check(data.event)} |
-          Story: ${check(data.story)}
-        </div>
-      </div>
-    `;
-
-    list.innerHTML += sheet;
-  });
+  values.push(current.trim());
+  return values;
 }
 
+function checkStatus(value) {
+  return value === "TRUE" ? "\u25CF" : "\u25CB";
+}
+
+async function loadData() {
+  try {
+    const response = await fetch(
+      `https://docs.google.com/spreadsheets/d/e/2PACX-1vR9wCzduAuhztWNNSoICvnKDW-cAwv2HaMwpdQqUGkOWcnbEWLWstz6-N-8pS5clwhlDXQml8k_WR9O/pub?output=csv&t=${Date.now()}`
+    );
+
+    if (!response.ok) {
+      throw new Error(`Failed to load dashboard: ${response.status}`);
+    }
+
+    const text = await response.text();
+    const rows = text
+      .split(/\r?\n/)
+      .slice(1)
+      .filter((row) => row.trim() !== "");
+    const list = document.getElementById("list");
+
+    list.innerHTML = "";
+
+    rows.forEach((row) => {
+      const cols = parseCsvRow(row);
+      const data = {
+        title: cols[0] || "",
+        game: cols[1] || "",
+        level: cols[2] || "",
+        poly: cols[3] || "",
+        encrypt: cols[4] || "",
+        master: cols[5] || "",
+        boopon: cols[6] || "",
+        daily: cols[7] || "",
+        weekly: cols[8] || "",
+        event: cols[9] || "",
+        story: cols[10] || "",
+      };
+
+      if (!data.title.trim()) {
+        return;
+      }
+
+      const sheet = document.createElement("div");
+      sheet.className = "acc-box";
+      sheet.innerHTML = `
+        <div class="inpo-acc">
+          <div style="line-height: 1;">
+            <h2>${data.title}</h2>
+            <p>${data.game} \u2022 Lv ${data.level}</p>
+          </div>
+          <div class="currency">
+            <img src="img/Item/Poly.webp" alt="Poly" class="item-icon" /> ${data.poly} |
+            <img src="img/Item/Encrypt.webp" alt="Encrypt" class="item-icon" /> ${data.encrypt} |
+            <img src="img/Item/Master.webp" alt="Master" class="item-icon" /> ${data.master} |
+            <img src="img/Item/Boopon.webp" alt="Boopon" class="item-icon" /> ${data.boopon}
+          </div>
+        </div>
+        <div class="status">
+          Daily: ${checkStatus(data.daily)} |
+          Weekly: ${checkStatus(data.weekly)} |
+          Event: ${checkStatus(data.event)} |
+          Story: ${checkStatus(data.story)}
+        </div>
+      `;
+
+      list.appendChild(sheet);
+    });
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+loadAccounts();
 loadData();
 setInterval(loadData, 30000);
