@@ -19,13 +19,16 @@
 }
 @font-face {
   font-family: fredoka;
-  src: url(font/Fredoka-VariableFont_wdthwght.ttf);
+  src: url(font/Fredoka.ttf);
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+:focus {
+  outline: none;
 }
 
 #loading {
@@ -52,7 +55,7 @@
 }
 
 body {
-  color: white;
+  color: rgb(245, 245, 255);
   background: radial-gradient(
       circle at 20% 30%,
       rgba(255, 215, 130, 0.22),
@@ -557,7 +560,78 @@ img {
   grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
 }
 
-#about {
+#info {
+
+}
+.sosmed {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 20px;
+}
+.sosmed-icon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: dongle;
+  font-size: 1.2rem;
+  color: rgb(245, 245, 255);
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  padding: 5px;
+  padding-right: 15px;
+  transition: all 0.3s ease;
+}
+.sosmed-icon:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+  transform: translateY(-5px);
+  box-shadow: 0 5px 1px rgba(0, 0, 0, 0.3);
+}
+.how-to {
+  margin-top: 15px;
+}
+summary {
+  background-color: rgba(0, 0, 0, 0.2);
+  width: 160px;
+  border: 1px solid var(--glass-border);
+  border-radius: 10px;
+  padding: 8px;
+  color: rgb(245, 245, 255);
+  padding-left: 20px;
+  padding-right: 15px;
+  list-style: none;
+  font-size: 0.9rem;
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+}
+.jawaban {
+  margin-top: 4px;
+  margin-left: 15px;
+  font-size: 1.2rem;
+  line-height: 0.8;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--glass-border);
+  color: rgb(245, 245, 255);
+}
+.faq[open] .jawaban {
+  opacity: 1;
+}
+summary::after {
+  content: "?";
+  float: right;
+  transition: 0.3s;
+}
+.faq .jawaban {
+  transition: all 0.4s ease;
+}
+.faq[open] summary::after {
+  transform: rotate(180deg);
+}
+
+.about {
   position: relative;
   text-align: center;
   gap: 15px;
@@ -565,7 +639,6 @@ img {
   border: 1px solid var(--glass-border);
   border-radius: 10px;
   background-color: rgba(0, 0, 0, 0.1);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
+  color: rgb(245, 245, 255);
 }
 /*----------------------------------------------------------------*/

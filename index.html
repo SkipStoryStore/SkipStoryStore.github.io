@@ -29,7 +29,7 @@
         <a onclick="showPage('dashboard')" class="nav-text">Dashboard</a>
       </div>
       <div class="bar1">
-        <a onclick="showPage('about')" class="nav-text">About</a>
+        <a onclick="showPage('info')" class="nav-text">Info</a>
       </div>
     </nav>
 
@@ -44,9 +44,9 @@
               <button class="arrow right" onclick="nextImage()">&#8250;</button>
               <button class="wa-btn" onclick="orderWA()">
                 <img
-                  src="img/whatsapp.png"
+                  src="img/whatsapp.svg"
                   alt="WhatsApp"
-                  style="width: 20px; height: 20px; margin-right: 6px"
+                  style="width: 20px; height: 20px; margin-right: 6px; filter: brightness(10) saturate(0%) invert(0%);"
                 />
                 Order
               </button>
@@ -82,39 +82,71 @@
         <div id="list"></div>
       </div>
 
-      <div id="about" class="page">
-        <h2 style="font-family: fredoka">About Us</h2>
-        <p style="font-family: fredoka; font-size: 0.8rem; margin-top: 10px">
-          We are a game account provider focused on Zenless Zone Zero and
-          Honkai: Star Rail.<br />
-          All accounts are created and played from the beginning with 100%
-          manual play, without the use of cheats, bots, macros, or any
-          third-party programs.<br />
-          Each account is a first owner account, with no history of access from
-          multiple users, and all progress is obtained naturally through
-          gameplay.<br />
-          We guarantee no hack back or account reclaim after the transaction is
-          completed.
-        </p>
+      <div id="info" class="page">
+        <div class="about">
+          <h2 style="font-family: fredoka">About Us</h2>
+          <p style="font-family: fredoka; font-size: 0.8rem; margin-top: 10px">
+            We are a game account provider focused on Zenless Zone Zero and
+            Honkai: Star Rail.<br />
+            All accounts are created and played from the beginning with 100%
+            manual play, without the use of cheats, bots, macros, or any
+            third-party programs.<br />
+            Each account is a first owner account, with no history of access from
+            multiple users, and all progress is obtained naturally through
+            gameplay.<br />
+            We guarantee no hack back or account reclaim after the transaction is
+            completed.
+          </p>
+        </div>
+        <div class="sosmed">
+          <a href="https://wa.me/6285117045962" target="_blank">
+            <div class="sosmed-icon">
+              <img src="img/whatsapp-bg.png" alt="WhatsApp" style="width: 30px;">WhatsApp
+            </div>
+          </a>
+          <a href="https://discord.com/users/620597484275892227" target="_blank">
+            <div class="sosmed-icon">
+              <img src="img/discord.svg" alt="Discord" style="width: 30px; background-color: rgb(29, 29, 30); padding: 5px; border-radius: 5px;">Discord
+            </div>
+          </a>
+          <a href="https://www.instagram.com/skip_story_store/" target="_blank">
+            <div class="sosmed-icon">
+              <img src="img/instagram.svg" alt="Instagram" style="width: 30px;">Instagram
+            </div>
+          </a>
+        </div>
+        <div class="how-to">
+          <details class="faq">
+            <summary style="font-family: fredoka; cursor: pointer;">> How to Order</summary>
+            <div class="jawaban">
+              <p>
+              1. Choose the account you want from our store list.<br>
+              2. Contact the admin via DM on WhatsApp, Discord, or Instagram.<br>
+              3. Select an available payment method, and make sure you send it correctly. If you make a transfer mistake, the admin is not responsible.<br>
+              4. Send proof of payment (screenshot) to the admin.<br>
+              5. Wait until the payment is received by the admin. If it has not been received, the account and password will not be sent.<br>
+              6. Once your payment is confirmed, the admin will assist you until you successfully log in.<br>
+              <strong>Note:</strong> Why do you need to wait until the payment is fully received by the admin?, To prevent fraud involving fake payment proofs.
+            </p>
+            </div>
+          </details>
+        </div>
         <p
           style="
             font-family: 'Monsieur La Doulaise', cursive;
-            position: absolute;
-            bottom: -35px;
-            left: 5%;
+            position: fixed;
+            bottom: 20px;
+            left: 30px;
             font-size: 1.2rem;
             color: rgba(255, 255, 255, 0.3);
             text-shadow: 0 0 5px #ffc40088;
+            
           "
         >
           Your trust is our greatest honor.
         </p>
-        <div>
-          <div></div>
-        </div>
       </div>
     </div>
-
     <script src="script.js"></script>
   </body>
 </html>
