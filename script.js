@@ -20,6 +20,10 @@ function showPage(page) {
   if (activePage) {
     activePage.style.display = "block";
   }
+
+  if (page === "dashboard") {
+    loadData();
+  }
 }
 
 showPage("accounts");
@@ -28,6 +32,7 @@ let currentItem = null;
 let images = [];
 let currentIndex = 0;
 let interval;
+let dashboardInterval;
 
 function animateCards() {
   document.querySelectorAll(".card").forEach((card, index) => {
@@ -222,6 +227,11 @@ function checkStatus(value) {
 
 async function loadData() {
   try {
+    const list = document.getElementById("list");
+    if (!list) {
+      return;
+    }
+
     const response = await fetch(
       `https://docs.google.com/spreadsheets/d/e/2PACX-1vR9wCzduAuhztWNNSoICvnKDW-cAwv2HaMwpdQqUGkOWcnbEWLWstz6-N-8pS5clwhlDXQml8k_WR9O/pub?output=csv&t=${Date.now()}`
     );
@@ -235,7 +245,6 @@ async function loadData() {
       .split(/\r?\n/)
       .slice(1)
       .filter((row) => row.trim() !== "");
-    const list = document.getElementById("list");
 
     list.innerHTML = "";
 
@@ -286,9 +295,19 @@ async function loadData() {
     });
   } catch (error) {
     console.error(error);
+    const list = document.getElementById("list");
+    if (list && list.innerHTML.trim() === "") {
+      list.innerHTML =
+        '<div class="acc-box"><div class="status">Dashboard failed to load. Please try again.</div></div>';
+    }
   }
 }
 
 loadAccounts();
 loadData();
-setInterval(loadData, 30000);
+dashboardInterval = setInterval(() => {
+  const dashboardPage = document.getElementById("dashboard");
+  if (dashboardPage && dashboardPage.style.display === "block") {
+    loadData();
+  }
+}, 60000);
