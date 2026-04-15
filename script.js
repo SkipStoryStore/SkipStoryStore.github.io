@@ -11,6 +11,25 @@ window.addEventListener("load", () => {
   }, 400);
 });
 
+function closeNote() {
+  const checkbox = document.getElementById("dont-show-again");
+
+  // kalau dicentang → simpan
+  if (checkbox.checked) {
+    localStorage.setItem("hideWelcome", "true");
+  }
+
+  document.getElementById("welcome-note").style.display = "none";
+}
+
+window.addEventListener("load", () => {
+  const hide = localStorage.getItem("hideWelcome");
+
+  if (hide === "true") {
+    document.getElementById("welcome-note").style.display = "none";
+  }
+});
+
 function showPage(page) {
   document.querySelectorAll(".page").forEach((section) => {
     section.style.display = "none";
