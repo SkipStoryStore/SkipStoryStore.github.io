@@ -661,7 +661,7 @@ img {
   box-shadow: 0 5px 1px rgba(0, 0, 0, 0.3);
 }
 summary {
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.1);
   width: 160px;
   border: 1px solid var(--glass-border);
   border-radius: 10px;
@@ -678,7 +678,7 @@ summary {
   margin-left: 15px;
   font-size: 1.2rem;
   line-height: 0.8;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.1);
   padding: 10px;
   border-radius: 10px;
   border: 1px solid var(--glass-border);
@@ -711,21 +711,10 @@ summary::after {
   background-color: rgba(0, 0, 0, 0.1);
   color: rgb(245, 245, 255);
 }
-/*
+
 @media (max-width: 600px) {
   body {
     padding: 8px;
-  }
-
-  .nav-bar {
-    padding: 8px 12px;
-    gap: 10px;
-  }
-
-  .bar {
-    gap: 12px;
-    margin-right: 0;
-    flex-wrap: wrap;
   }
 
   #info {
@@ -735,6 +724,17 @@ summary::after {
   #info > div,
   #info > p {
     max-width: 100%;
+  }
+/*
+  .nav-bar {
+    padding: 8px 12px;
+    gap: 10px;
+  }
+
+  .bar {
+    gap: 12px;
+    margin-right: 0;
+    flex-wrap: wrap;
   }
 
   .sosmed {
@@ -753,6 +753,5 @@ summary::after {
 
   .jawaban {
     margin-left: 0;
-  }
-}*/
-/*----------------------------------------------------------------*/
+  }*/
+}
