@@ -711,7 +711,7 @@ summary::after {
   background-color: rgba(0, 0, 0, 0.1);
   color: rgb(245, 245, 255);
 }
-
+/*
 @media (max-width: 600px) {
   body {
     padding: 8px;
@@ -754,9 +754,5 @@ summary::after {
   .jawaban {
     margin-left: 0;
   }
-
-  .how-to-click-me {
-    left: 0;
-  }
-}
+}*/
 /*----------------------------------------------------------------*/

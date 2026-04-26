@@ -1,4 +1,3 @@
 - important notice, line-heigt
 - testimoni
 - id ver
-- fix info black dibagian kanan dan bawah
