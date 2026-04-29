@@ -59,7 +59,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.2);
+  background: rgba(0, 0, 0, 0.2);
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
   display: flex;
@@ -148,16 +148,17 @@ body {
   min-height: 100vh;
   background-size: 100% 200%;
 }
-html, body {
+html,
+body {
   background-color: #000;
   width: 100%;
   max-width: 100%;
 }
 
 :root {
-  --gold: #d4af37;
-  --glass-bg: rgba(255, 255, 255, 0.1);
-  --glass-border: rgba(180, 180, 180, 0.1);
+  --gold: rgb(225, 164, 33);
+  --glass-bg: rgba(50, 50, 50, 0.3);
+  --glass-border: rgba(89, 89, 89, 0.1);
   color: rgb(233, 176, 53);
   --text-color: rgb(225, 164, 33);
 }
@@ -279,14 +280,14 @@ img {
   border: 1px solid var(--glass-border);
   padding: 15px;
   border-radius: 10px;
-  background-color: rgba(53, 55, 58, 0.3);
+  background-color: rgba(0, 0, 0, 0.2);
   margin: 0px;
 }
 
 .text-kategori {
   font-family: seenonim;
   font-size: 1.4rem;
-  color: rgb(225, 164, 33, 0.5);
+  color: rgb(225, 164, 33);
   margin-bottom: 8px;
   opacity: 1;
 }
@@ -548,7 +549,8 @@ img {
 
 .card:hover {
   transform: translateX(0) scale(1.05);
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 15px rgba(225, 164, 33, 0.05);
+  border: 1px solid rgba(225, 164, 33, 0.1);
 }
 
 .card-title {
@@ -558,11 +560,7 @@ img {
   font-size: 1.3rem;
 }
 .acc-box {
-  background: linear-gradient(
-    160deg,
-    rgb(10, 10, 10, 0.5),
-    rgba(18, 18, 18, 0.5)
-  );
+  background-color: rgba(0, 0, 0, 0.2);
   border: 1px solid var(--glass-border);
   padding: 15px;
   margin: 5px;
@@ -629,7 +627,6 @@ img {
 }
 
 #info {
-
 }
 
 #info p {
@@ -649,14 +646,14 @@ img {
   font-family: dongle;
   font-size: 1.2rem;
   color: rgb(245, 245, 255);
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   padding: 5px;
   padding-right: 15px;
   transition: all 0.3s ease;
 }
 .sosmed-icon:hover {
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.5);
   transform: translateY(-5px);
   box-shadow: 0 5px 1px rgba(0, 0, 0, 0.3);
 }
@@ -725,33 +722,4 @@ summary::after {
   #info > p {
     max-width: 100%;
   }
-/*
-  .nav-bar {
-    padding: 8px 12px;
-    gap: 10px;
-  }
-
-  .bar {
-    gap: 12px;
-    margin-right: 0;
-    flex-wrap: wrap;
-  }
-
-  .sosmed {
-    gap: 10px;
-  }
-
-  .sosmed a {
-    max-width: 100%;
-  }
-
-  .sosmed-icon {
-    width: 100%;
-    justify-content: center;
-    padding-right: 10px;
-  }
-
-  .jawaban {
-    margin-left: 0;
-  }*/
 }

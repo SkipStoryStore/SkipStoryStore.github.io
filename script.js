@@ -289,19 +289,36 @@ async function loadData() {
 
       const sheet = document.createElement("div");
       sheet.className = "acc-box";
+
+      let currencyHTML = "";
+
+      if (data.game === "ZZZ") {
+        currencyHTML = `
+          <img src="img/Item/Poly.webp" class="item-icon" /> ${data.poly || 0} |
+          <img src="img/Item/Encrypt.webp" class="item-icon" /> ${data.encrypt || 0} |
+          <img src="img/Item/Master.webp" class="item-icon" /> ${data.master || 0} |
+          <img src="img/Item/Boopon.webp" class="item-icon" /> ${data.boopon || 0}
+        `;
+      } else if (data.game === "HSR") {
+        currencyHTML = `
+          <img src="img/Item/Jade.webp" class="item-icon" /> ${data.jade || 0} |
+          <img src="img/Item/Ticket.webp" class="item-icon" /> ${data.ticket || 0} |
+          <img src="img/Item/Standard.webp" class="item-icon" /> ${data.standard || 0}
+        `;
+      }
+
       sheet.innerHTML = `
         <div class="inpo-acc">
           <div style="line-height: 1;">
             <h2>${data.title}</h2>
-            <p>${data.game} \u2022 Lv ${data.level}</p>
+            <p>${data.game} • Lv ${data.level}</p>
           </div>
+
           <div class="currency">
-            <img src="img/Item/Poly.webp" alt="Poly" class="item-icon" /> ${data.poly} |
-            <img src="img/Item/Encrypt.webp" alt="Encrypt" class="item-icon" /> ${data.encrypt} |
-            <img src="img/Item/Master.webp" alt="Master" class="item-icon" /> ${data.master} |
-            <img src="img/Item/Boopon.webp" alt="Boopon" class="item-icon" /> ${data.boopon}
+            ${currencyHTML}
           </div>
         </div>
+
         <div class="status">
           Daily: ${checkStatus(data.daily)} |
           Weekly: ${checkStatus(data.weekly)} |
@@ -321,6 +338,7 @@ async function loadData() {
     }
   }
 }
+
 
 loadAccounts();
 loadData();
